@@ -5,7 +5,6 @@ from .config import DefaultConfig
 
 
 def create_app():
-    # TODO: improve configuration, create dev/test/prod envs
     project_root = Path().absolute()
 
     app = Flask(__name__, instance_relative_config=True, instance_path=project_root)
