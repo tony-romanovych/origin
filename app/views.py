@@ -31,7 +31,7 @@ def login():
     TODO: pass CSRF token into state (fix a bug in the library?)
     """
     if 'oauth_token' in session:
-        flash('Already logged in.')
+        flash('Already logged in.', category='warning')
         return redirect(url_for('index'))
 
     return github.authorize(scope='public_repo', redirect_uri=url_for('auth', _external=True))
@@ -51,7 +51,7 @@ def auth(oauth_token):
         flash("Authorization failed.", category='error')
     else:
         session['oauth_token'] = oauth_token
-        flash("Authorization successful.")
+        flash("Authorization successful.", category='success')
 
     return redirect(next_url)
 
