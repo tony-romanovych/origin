@@ -1,0 +1,6 @@
+# https://cloud.google.com/appengine/docs/standard/python3/python-differences
+runtime: python37
+
+handlers:
+  - url: /.*
+    script: auto
