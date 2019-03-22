@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <div class="container">
+        <div class="page-header">
+            <h1>Origin
+                <small>a self-replicating GitHub repository</small>
+            </h1>
+        </div>
+
+        <p>
+            {# TODO: write description #}
+            When a user opens the URL, the application behind the URL requests access to the user's GitHub profile
+            and creates a repository with its own (application's) code. The application should not ask for the
+            users's password or require access to user's private repositories.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed urna eros, faucibus vitae odio ut, laoreet
+            vehicula tellus. Fusce sagittis mi eu convallis pretium. Etiam a turpis non orci posuere pretium sed sit
+            amet lorem. Nullam mollis eu ipsum ac rutrum. Cras mattis faucibus lacinia. Nulla faucibus mi et
+            condimentum euismod. Donec consectetur volutpat malesuada. Curabitur dictum finibus leo.
+        </p>
+
+        <div class="row" style="margin: 50px auto 100px auto">
+            <div class="col-md-2 col-md-offset-5">
+                <a href="{{ url_for('clone_repository') }}" class="btn btn-lg btn-primary">Fork this repo</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
