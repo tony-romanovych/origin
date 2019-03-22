@@ -26,6 +26,7 @@ def login():
 
     # Though public_repo is too wide scope, there's no narrower alternatives at the time
     # The same concern applies to possibility of recreating existing Origin repo
+    # TODO: pass CSRF token into state (fix a bug in the library?)
     return github.authorize(scope='public_repo', redirect_uri=url_for('auth', _external=True))
 
 
@@ -45,7 +46,7 @@ def auth(oauth_token):
 
 @app.route('/logout')
 def logout():
-    session.pop('oauth_token')
+    session.pop('oauth_token', None)
 
     return redirect(url_for('index'))
 

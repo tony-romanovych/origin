@@ -15,3 +15,6 @@
 .git
 
 #!include:.gitignore
+
+# Do not commit, but upload to production
+!.env
