@@ -1,5 +1,31 @@
 # Project Origin
-Self-replicating GitHub repository
+
+This repository source code and running example of it together form a self-replicating GitHub repository.
+
+Application is created primarily for education purpose. Functionality is dead simple: it allows you to sign in
+to your GitHub account and clone its source code ("fork" in GitHub terms). You get a new repository with full
+application source code copy, licensed under MIT. You can then run your own application instance following the
+instructions below.
+
+Check out live example at https://origin-234822.appspot.com/. Interface is pretty straightforward and self-describing.
+Don't forget to logout after you've done playing with it.
+
+
+## Tech specs
+
+
+Application is written in Python 3 using [Flask](http://flask.pocoo.org/) - python microframework for web development.
+Additionally I used [GitHub-Flask](https://github-flask.readthedocs.io/en/latest/) extension that gives
+high level interface to GitHub API and OAuth authorization process. Docs for the latter are available
+[here](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/). It is deployed to
+Google Cloud Platform and is running on Google App Engine.
+
+Therefore, code structure is conventional to Flask projects, with couple differences/alternatives:
+- `.env` file is used to store config values, especially those considered to be private. This file must not be
+  commited to repository. There's `.env.example` with the list of available settings.
+- Dependencies are handled via `virtualenv` together with `requirements.txt`. I would like to use `pipenv`,
+  but this is the special requirement of App Engine.
+- `main.py` in the project root used as an entrypoint.
 
 
 ## Installation
@@ -52,13 +78,20 @@ Now go back to GitHub app settings and replace _Homepage URL_ and domain portion
 with the new service URL (`/auth` remains). That's it! Your app is fully functional, go ahead and test it yourself.
 
 
-## TO DO
+## Notes
 
 
-- Tech spec (what and how), description, implementation notes, code comments
+I don't much like the code structure, especially talking about `app/views.py`. All logic is mixed and placed within
+controllers (or *views* in terms of Flask). And this module has import side effects, which feels as something definitely
+bad. However, Flask documentation is absolutely ok with that, so I'm not sure, maybe it's kinda proper style, due to
+its simplicity or whatever.
+
+##### TO DO
 - Tests; mock GitHub interaction?
 - Refactor views.py + todo's
-- Improve configuration, create dev/test/prod envs, use [dotenv](http://flask.pocoo.org/docs/1.0/cli/#environment-variables-from-dotenv)
+- Review code, add comments if necessary
+- Improve configuration, create dev/test/prod envs,
+  use [dotenv](http://flask.pocoo.org/docs/1.0/cli/#environment-variables-from-dotenv)
 - Deployment scripts?
 
 ##### Explore
