@@ -90,9 +90,11 @@ Seems like this GitHub lib is not ready to production. It cannot handle CSRF tok
 OAuth errors. Should have used my own approach or write a pull request.
 
 #### TO DO
-- Tests; mock GitHub interaction?
-- Refactor views.py + todo's
+- On `/clone` redirect to login and back
+- Extend GitHub-Flask: pass CSRF token into `state`, handle auth error message
+- Write tests, refactor `app/views.py`; mock GitHub interaction?
 - Review code, add comments if necessary
+- Check if repo already exists on auth
 - Improve configuration, create dev/test/prod envs,
   use [dotenv](http://flask.pocoo.org/docs/1.0/cli/#environment-variables-from-dotenv)
 - Deployment scripts?

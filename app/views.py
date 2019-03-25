@@ -35,7 +35,6 @@ def login():
     """
     NOTE: Though public_repo is too wide scope, there's no narrower alternatives at the time. The same concern applies
     to possibility of recreating existing Origin repo.
-    TODO: pass CSRF token into state (fix a bug in the library?)
     """
     if g.user.authorized:
         flash('Already logged in.', category='warning')
@@ -49,7 +48,6 @@ def login():
 def auth(oauth_token):
     """
     :param oauth_token: OAuth token received from GitHub or None if authorization failed.
-    TODO: Verbose error message
     """
     next_url = request.args.get('next') or url_for('index')
 
@@ -83,10 +81,6 @@ def logout():
 
 @app.route('/clone')
 def clone_repository():
-    """
-    TODO: redirect to login
-    TODO: check if repo already exists
-    """
     if not g.user.authorized:
         flash('You are not authorized. Please log in to your GitHub account first.', category='warning')
         return redirect(url_for('index'))
