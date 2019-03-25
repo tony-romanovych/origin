@@ -14,8 +14,8 @@
         <p>
             Application is created primarily for education purpose. Functionality is dead simple: it allows you to sign
             in to your GitHub account and clone its source code ("fork" in GitHub terms). You get a new repository with
-            full application source code copy, licensed under MIT. You can then run your own application instance following
-            the installation instructions on app's
+            full application source code copy, licensed under MIT. You can then run your own application instance
+            following the installation instructions on app's
             <a href="https://github.com/{{ config['ORIGINAL_REPO'] }}" target="_blank">homepage on GitHub</a>.
         </p>
         <p>
@@ -23,9 +23,9 @@
             and then click on the button below.
         </p>
 
-        <div class="row" style="margin: 50px auto 100px auto">
+        <div class="row" style="margin-top: 50px; margin-bottom: 100px">
             <div class="col-md-2 col-md-offset-5">
-                <a href="{{ url_for('clone_repository') }}" class="btn btn-lg btn-primary">Fork this repo</a>
+                <a href="{{ url_for('clone_repository') }}" class="btn btn-lg btn-primary">Fork this repository</a>
             </div>
         </div>
     </div>

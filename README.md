@@ -86,6 +86,9 @@ controllers (or *views* in terms of Flask). And this module has import side effe
 bad. However, Flask documentation is absolutely ok with that, so I'm not sure, maybe it's kinda proper style, due to
 its simplicity or whatever.
 
+Seems like this GitHub lib is not ready to production. It cannot handle CSRF token on auth properly, it cannot handle
+OAuth errors. Should have used my own approach or write a pull request.
+
 #### TO DO
 - Tests; mock GitHub interaction?
 - Refactor views.py + todo's

@@ -33,7 +33,10 @@
                     {% if not g.user.authorized %}
                         <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% else %}
-                        <li><a href="{{ g.user.profile_url }}">My GitHub</a></li>
+                        {% if g.user.forked %}
+                            <li><a href="{{ g.user.repo_url }}" target="_blank">Repository</a></li>
+                        {% endif %}
+                        <li><a href="{{ g.user.profile_url }}" target="_blank">Profile ({{ g.user.username }})</a></li>
                         <li><a href="{{ url_for('logout') }}">Logout</a></li>
                     {% endif %}
                 </ul>
