@@ -70,7 +70,6 @@ def clone_repository():
     """
     TODO: redirect to login
     TODO: check if repo already exists
-    TODO: fork, mirror or clone?
     TODO: add link to the newly created fork (response.html_url)
     """
     if 'oauth_token' not in session:
