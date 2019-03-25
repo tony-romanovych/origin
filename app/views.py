@@ -1,5 +1,6 @@
-from flask import current_app as app, request, session, flash, redirect, url_for
+from flask import current_app as app, g, request, session, flash, redirect, url_for
 from flask_github import GitHub, GitHubError
+from werkzeug.exceptions import HTTPException
 from .decorators import templated
 
 
@@ -11,16 +12,18 @@ def token_getter():
     return session.get('oauth_token')
 
 
+@app.before_request
+def before_request():
+    g.user = {
+        "authorized": 'oauth_token' in session,
+        "profile_url": "#"
+    }
+
+
 @app.route('/')
 @templated('index.html')
 def index():
-    return {
-        "github_link": 'https://github.com/%s' % app.config['ORIGINAL_REPO'],
-        "user": {
-            "authorized": 'oauth_token' in session,
-            "profile_url": "#"
-        }
-    }
+    pass
 
 
 @app.route('/login')
@@ -84,3 +87,9 @@ def clone_repository():
     flash('Forking a Repository happens asynchronously. '
           'You may have to wait a short period of time before you can access the git objects.', category='info')
     return redirect(url_for('index'))
+
+
+@app.errorhandler(HTTPException)
+@templated('error.html')
+def handle_http_error(e):
+    return {"exception": e}, e.code

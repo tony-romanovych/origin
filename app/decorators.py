@@ -10,12 +10,15 @@ def templated(template=None):
             if template_name is None:
                 template_name = request.endpoint \
                                     .replace('.', '/') + '.html'
-            ctx = f(*args, **kwargs)
-            if ctx is None:
-                ctx = {}
-            elif not isinstance(ctx, dict):
+
+            ctx = f(*args, **kwargs) or {}
+
+            if isinstance(ctx, dict):
+                return render_template(template_name, **ctx)
+            elif isinstance(ctx, tuple):
+                return (render_template(template_name, **ctx[0]),) + ctx[1:]  # not sure if it's readable
+            else:
                 return ctx
-            return render_template(template_name, **ctx)
 
         return decorated_function
 

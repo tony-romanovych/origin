@@ -27,13 +27,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ github_link }}" target="_blank">View on GitHub</a></li>
+                    <li><a href="https://github.com/{{ config['ORIGINAL_REPO'] }}" target="_blank">View on GitHub</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    {% if not user.authorized %}
+                    {% if not g.user.authorized %}
                         <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% else %}
-                        <li><a href="{{ user.profile_url }}">My GitHub</a></li>
+                        <li><a href="{{ g.user.profile_url }}">My GitHub</a></li>
                         <li><a href="{{ url_for('logout') }}">Logout</a></li>
                     {% endif %}
                 </ul>
