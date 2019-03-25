@@ -37,7 +37,7 @@ First of all, you have to own a GitHub account, in which you have permissions to
 Then you also have to create and activate an account on [Google Cloud Platform](https://cloud.google.com/).
 This application is tested in Google App Engine Python 3 Standard Environment
 ([docs](https://cloud.google.com/appengine/docs/standard/python3/)),
-and this instructions assume that you also use it. However, you can choose another deployment option for Python3
+and this instructions assume that you use it too. However, you can choose another deployment option for Python3
 application, see more examples in official [Flask documentation](http://flask.pocoo.org/docs/1.0/deploying/).
 
 #### Step 1 - Create a GitHub OAuth app
@@ -74,7 +74,7 @@ the deployed service. Congratulations, your app is now up and running! Follow th
 and check if homepage is displaying right.
 
 #### Step 5 - Adjust GitHub OAuth app settings
-Now go back to GitHub app settings and replace _Homepage URL_ and domain portion of _Authorization callback URL_
+Now go back to GitHub OAuth app settings and replace _Homepage URL_ and domain portion of _Authorization callback URL_
 with the new service URL (`/auth` remains). That's it! Your app is fully functional, go ahead and test it yourself.
 
 
@@ -87,10 +87,10 @@ bad. However, Flask documentation is absolutely ok with that, so I'm not sure, m
 its simplicity or whatever.
 
 Seems like this GitHub lib is not ready to production. It cannot handle CSRF token on auth properly, it cannot handle
-OAuth errors. Should have used my own approach or write a pull request.
+OAuth error messages. Should have used my own approach or write a pull request.
 
 #### TO DO
-- On `/clone` redirect to login and back
+- On `/clone` redirect to login and back (in order to complete entire workflow in one step)
 - Extend GitHub-Flask: pass CSRF token into `state`, handle auth error message
 - Write tests, refactor `app/views.py`; mock GitHub interaction?
 - Review code, add comments if necessary
