@@ -15,7 +15,7 @@ def templated(template=None):
 
             if isinstance(ctx, dict):
                 return render_template(template_name, **ctx)
-            elif isinstance(ctx, tuple):
+            elif isinstance(ctx, tuple) and isinstance(ctx[0], dict):
                 return (render_template(template_name, **ctx[0]),) + ctx[1:]  # not sure if it's readable
             else:
                 return ctx
